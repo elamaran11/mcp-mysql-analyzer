@@ -1,5 +1,10 @@
 # MySQL Performance Analyzer - MCP Server
 
+## README.md
+
+```markdown
+# MySQL Performance Analyzer - MCP Server
+
 A Model Context Protocol (MCP) server for analyzing and optimizing MySQL database performance. This tool provides a comprehensive set of features for identifying performance bottlenecks, recommending optimizations, and analyzing database structure.
 
 ## Features
@@ -26,69 +31,75 @@ A Model Context Protocol (MCP) server for analyzing and optimizing MySQL databas
    ```bash
    git clone https://github.com/yourusername/mysql-performance-analyzer.git
    cd mysql-performance-analyzer
+   ```
 
-    Install dependencies:
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-    pip install -r requirements.txt
+3. Run the server:
+   ```bash
+   python main.py --port 8000 --host 0.0.0.0
+   ```
 
-    Run the server:
-
-    python main.py --port 8000 --host 0.0.0.0
-
-Docker Deployment
+## Docker Deployment
 
 Build and run the Docker container:
 
+```bash
 docker build -t mysql-performance-analyzer .
 docker run -p 8000:8000 mysql-performance-analyzer
+```
 
-Usage
+## Usage
 
 The server exposes an MCP endpoint that can be used with compatible clients. It also provides the following HTTP endpoints:
 
-    /health: Health check endpoint
-    /sessions: View active sessions
+- `/health`: Health check endpoint
+- `/sessions`: View active sessions
 
-Configuration
+## Configuration
 
 The server accepts the following command-line arguments:
 
-    --port: Port to run the server on (default: 8000)
-    --host: Host to bind the server to (default: 0.0.0.0)
-    --session-timeout: Session timeout in seconds (default: 1800)
-    --request-timeout: Request timeout in seconds (default: 300)
+- `--port`: Port to run the server on (default: 8000)
+- `--host`: Host to bind the server to (default: 0.0.0.0)
+- `--session-timeout`: Session timeout in seconds (default: 1800)
+- `--request-timeout`: Request timeout in seconds (default: 300)
 
-Tools
-analyze_database_structure
+## Tools
 
+### analyze_database_structure
 Analyze the database structure and provide insights on schema design, indexes, and potential optimizations.
-get_slow_queries
 
+### get_slow_queries
 Identify slow-running queries in the database.
-analyze_query
 
+### analyze_query
 Analyze a SQL query and provide optimization recommendations.
-recommend_indexes
 
+### recommend_indexes
 Recommend indexes for a given SQL query.
-suggest_query_rewrite
 
+### suggest_query_rewrite
 Suggest optimized rewrites for a SQL query.
-analyze_innodb_buffer_pool
 
+### analyze_innodb_buffer_pool
 Analyze InnoDB buffer pool usage and provide optimization recommendations.
-analyze_table_fragmentation
 
+### analyze_table_fragmentation
 Analyze table fragmentation and provide optimization recommendations.
-show_mysql_settings
 
+### show_mysql_settings
 Show MySQL configuration settings with optional filtering.
-execute_read_only_query
 
+### execute_read_only_query
 Execute a read-only SQL query and return the results.
-health_check
 
+### health_check
 Check if the server is running and responsive.
-License
 
-MIT License 
+## License
+
+[MIT License](LICENSE)
