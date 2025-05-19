@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-analyzer
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-analyzer
+  template:
+    metadata:
+      labels:
+        app: mysql-analyzer
+    spec:
+      serviceAccountName: rds-access-service-account
+      containers:
+        - name: postgresql-analyzer
+          image: 940019131157.dkr.ecr.us-west-2.amazonaws.com/mysql-analyzer-mcp:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DB_SECRET_NAME
+              value: "dev/db/credentials"
+            - name: AWS_REGION
+              value: "us-west-2"  # Adjust to your region
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+---
+#apiVersion: v1
+#kind: ServiceAccount
+#metadata:
+#  name: rds-access-service-account
+#  namespace: default
